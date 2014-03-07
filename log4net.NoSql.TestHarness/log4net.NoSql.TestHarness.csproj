@@ -57,7 +57,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\log4net.ElasticAppender\log4net.NoSql.csproj">
+    <ProjectReference Include="..\log4net.NoSql\log4net.NoSql.csproj">
       <Project>{db0ee590-72ac-490e-bcef-7c742419d718}</Project>
       <Name>log4net.NoSql</Name>
     </ProjectReference>
