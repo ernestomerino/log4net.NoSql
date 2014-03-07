@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 
 namespace log4net.NoSql.TestHarness
@@ -32,12 +33,12 @@ namespace log4net.NoSql.TestHarness
 
         public void Error()
         {
-            _logger.Error(LoremIpsum(5, 8, 1, 1, 1));
+            Ex();
         }
 
         public void Fatal()
         {
-            _logger.Fatal(LoremIpsum(5, 8, 1, 1, 1));
+            Ex();
         }
 
         public void Ex()
@@ -48,7 +49,7 @@ namespace log4net.NoSql.TestHarness
             }
             catch (Exception ex)
             {
-                _logger.Error(LoremIpsum(5, 8, 1, 1, 1));    
+                _logger.Error(LoremIpsum(5, 8, 1, 1, 1), ex);    
             }
         }
 
@@ -73,7 +74,6 @@ namespace log4net.NoSql.TestHarness
 
             for (int p = 0; p < numParagraphs; p++)
             {
-                result += "<p>";
                 for (int s = 0; s < numSentences; s++)
                 {
                     for (int w = 0; w < numWords; w++)
@@ -86,7 +86,6 @@ namespace log4net.NoSql.TestHarness
                     }
                     result += ". ";
                 }
-                result += "</p>";
             }
 
             return result;
@@ -95,37 +94,33 @@ namespace log4net.NoSql.TestHarness
 
         public void Start()
         {
-            var factory = new TaskFactory();
-            var tasks = new List<Task>();
 
-            for(var i=0; i< NumberOfEntries; i++)
+            for (var i = 0; i < NumberOfEntries; i++)
             {
-                
-                var logLevel = new Random(5).Next(1, 6);
+                var logLevel = new Random(i).Next(1, 7);
                 switch (logLevel)
                 {
                     case 1:
-                        tasks.Add(factory.StartNew(Debug));
+                        Debug();
                         break;
                     case 2:
-                        tasks.Add(factory.StartNew(Info));
+                        Info();
                         break;
                     case 3:
-                        tasks.Add(factory.StartNew(Warn));
+                        Warn();
                         break;
                     case 4:
-                        tasks.Add(factory.StartNew(Error));
+                        Error();
                         break;
                     case 5:
-                        tasks.Add(factory.StartNew(Ex));
+                        Ex();
                         break;
                     case 6:
-                        tasks.Add(factory.StartNew(Fatal));
+                        Fatal();
                         break;
                 }
             }
 
-            Task.WaitAll(tasks.ToArray());
 
         }
     }

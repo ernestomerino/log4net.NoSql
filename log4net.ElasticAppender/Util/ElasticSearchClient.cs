@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Text;
+using RestSharp;
 
 namespace log4net.NoSql.Util
 {
@@ -20,16 +21,26 @@ namespace log4net.NoSql.Util
         public void Insert(string index, string type, string log)
         {
 
-            using (var client = new WebClient())
+            var client = new RestClient(_baseUri);
+            var request = new RestRequest(index + "/" + type);
+
+            request.AddParameter("application/json; charset=utf-8", log, ParameterType.RequestBody);
+            request.RequestFormat = DataFormat.Json;
+            request.Method = Method.POST;
+            request.AddBody(log);
+
+            try
             {
-                var url = string.Format("{0}/{1}/{2}", _baseUri, index, type);
-                client.UploadData(new Uri(url), Encoding.UTF8.GetBytes(log));
-                
+                client.ExecuteAsync(request, response => { });
+
+                //client.ExecuteAsyncPost(request, null, "POST");
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex);
             }
 
         }
-        
-
 
     }
 }

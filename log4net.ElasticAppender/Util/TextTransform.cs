@@ -1,9 +1,9 @@
-﻿using System.Web.Util;
-using log4net.ElasticSearch.Util;
+﻿using log4net.Core;
+using RestSharp.Serializers;
 
 namespace log4net.NoSql.Util
 {
-    public class TextTransform : HttpEncoder, ITextTransform
+    public class TextTransform : ITextTransform
     {
         private static readonly TextTransform _instance = new TextTransform();
         private TextTransform()
@@ -17,8 +17,16 @@ namespace log4net.NoSql.Util
 
         public string JavaScriptEncode(string value)
         {
-            return base.JavaScriptStringEncode(value);
-//            return value.Replace(@"\", @"\\");
+            return value
+                .Replace(@"\", @"\\")
+                .Replace(@"""", @"\""");
+        }
+
+        public string Serialize(object obj)
+        {
+            var serializer = new JsonSerializer();
+            serializer.ContentType = "application/json";
+            return serializer.Serialize(obj).Replace("timestamp", "@timestamp");
         }
     }
 }

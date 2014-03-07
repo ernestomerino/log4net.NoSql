@@ -11,14 +11,19 @@ namespace log4net.NoSql.TestHarness
 
             //XmlConfigurator.ConfigureAndWatch(new FileInfo("log4net.config"));
 
+            var startTime = DateTime.UtcNow;
+            const int numberOfRecords = 10000;
+
             var harness = new RandomLogger(logger)
             {
-                NumberOfEntries = 100
+                NumberOfEntries = numberOfRecords
             };
 
             harness.Start();
 
-            Console.WriteLine("DONE!");
+            var durationMs = DateTime.UtcNow.Subtract(startTime).TotalMilliseconds;
+
+            Console.WriteLine("Inserted {0} records in {1} ms ", numberOfRecords, durationMs);
             Console.ReadLine();
         }
     }
