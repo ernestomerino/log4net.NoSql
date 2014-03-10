@@ -26,7 +26,7 @@ namespace log4net.NoSql.Util
         {
             var serializer = new JsonSerializer();
             serializer.ContentType = "application/json";
-            return serializer.Serialize(obj).Replace("timestamp", "@timestamp");
+            return serializer.Serialize(obj);
         }
     }
 }

@@ -12,7 +12,7 @@ namespace log4net.NoSql.TestHarness
             //XmlConfigurator.ConfigureAndWatch(new FileInfo("log4net.config"));
 
             var startTime = DateTime.UtcNow;
-            const int numberOfRecords = 10000;
+            const int numberOfRecords = 100;
 
             var harness = new RandomLogger(logger)
             {
