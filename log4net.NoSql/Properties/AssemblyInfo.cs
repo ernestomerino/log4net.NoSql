@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("log4net.NoSql")]
-[assembly: AssemblyDescription("No SQL log4net Appenders & Layouts")]
+[assembly: AssemblyDescription("No SQL log4net Appender")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("ernestomerino")]
 [assembly: AssemblyProduct("log4net.NoSql")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
