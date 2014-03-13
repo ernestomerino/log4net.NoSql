@@ -43,7 +43,6 @@ namespace log4net.NoSql.Appender
             var sb = new StringBuilder();
             var writer = new StringWriter(sb);
             base.Layout.Format(writer, loggingEvent);
-            Console.WriteLine(sb.ToString());
             Client.Insert(Index, DocumentType, sb.ToString());
         }
     }

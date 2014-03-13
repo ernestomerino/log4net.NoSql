@@ -6,10 +6,7 @@ namespace log4net.NoSql.TestHarness
     {
         static void Main(string[] args)
         {
-
             var logger = log4net.LogManager.GetLogger(typeof(RandomLogger));
-
-            //XmlConfigurator.ConfigureAndWatch(new FileInfo("log4net.config"));
 
             var startTime = DateTime.UtcNow;
             const int numberOfRecords = 100;

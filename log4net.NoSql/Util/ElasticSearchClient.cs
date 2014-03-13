@@ -2,6 +2,7 @@
 using System.Net;
 using System.Text;
 using RestSharp;
+using System.Diagnostics;
 
 namespace log4net.NoSql.Util
 {
@@ -31,13 +32,12 @@ namespace log4net.NoSql.Util
 
             try
             {
-                client.ExecuteAsync(request, response => { });
-
-                //client.ExecuteAsyncPost(request, null, "POST");
+                //dont care about response as if it fails should not throw any exceptions
+                client.ExecuteAsync(request, response => {});
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex);
+                Trace.WriteLine(ex);
             }
 
         }

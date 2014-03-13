@@ -15,13 +15,6 @@ namespace log4net.NoSql.Util
             get { return _instance; }
         }
 
-        public string JavaScriptEncode(string value)
-        {
-            return value
-                .Replace(@"\", @"\\")
-                .Replace(@"""", @"\""");
-        }
-
         public string Serialize(object obj)
         {
             var serializer = new JsonSerializer();
