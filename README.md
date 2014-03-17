@@ -8,24 +8,8 @@ Uses RESTSharp to communicate with the ElasticSearch REST Api and contains a cus
 Usage:
 ============
 
-Sample configuration specifying ES Host, Port, Index and DocType values
+Please see the WIKI for usage information: https://github.com/ernestomerino/log4net.NoSql/wiki
 
-
-&lt;appender name=&quot;Elastic&quot; type=&quot;log4net.NoSql.Appender.ElasticSearchAppender, log4net.NoSql&quot;&gt;
-
-  &lt;Host value=&quot;localhost&quot; /&gt;
-  
-  &lt;Port value=&quot;9200&quot; /&gt;
-  
-  &lt;Index value=&quot;logs&quot; /&gt;
-  
-  &lt;DocumentType value=&quot;apps&quot; /&gt;
-  
-  &lt;layout type=&quot;log4net.  NoSql.Layout.JsonLayout, log4net.NoSql&quot; /&gt;
-  
-&lt;/appender&gt; 
-
-  
   
 
 Testing:
